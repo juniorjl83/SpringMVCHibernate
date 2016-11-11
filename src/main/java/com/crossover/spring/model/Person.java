@@ -28,28 +28,36 @@ public class Person {
 	@Column
 	private String country;
 
+	public Person(String aName, String aCountry) {
+		name = aName;
+		country = aCountry;
+	}
+
+	public Person() {
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int aId) {
+		id = aId;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String aName) {
+		name = aName;
 	}
 
 	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCountry(String aCountry) {
+		country = aCountry;
 	}
 	
 	@Override
