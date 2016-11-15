@@ -1,0 +1,2 @@
+insert into users (userid, password, name, email, active_flg, create_date, update_datetime) values ('admin', 'admin123', 'administrator', 'admin@gmail.com', 1,'2016-11-15', null);
+insert into users (userid, password, name, email, active_flg, create_date, update_datetime) values ('user01', 'user01', 'user01', 'user01@gmail.com', 1,'2016-11-15', null);
