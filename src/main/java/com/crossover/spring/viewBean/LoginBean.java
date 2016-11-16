@@ -2,6 +2,7 @@ package com.crossover.spring.viewBean;
 
 public class LoginBean {
 
+	private String description;
 	private String username;
 	private String password;
 	private String message;
@@ -29,5 +30,15 @@ public class LoginBean {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	
 }

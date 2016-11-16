@@ -22,6 +22,12 @@
 <form:form action="${addAction}" commandName="loginBean">
 <table>
 	<tr>
+		<td colspan="2">
+		<form:label path="description">
+				<spring:message text="${loginBean.description}"/>
+		</form:label>
+	</tr>
+	<tr>
 		<td>
 			<form:label path="username">
 				<spring:message text="Enter your username"/>

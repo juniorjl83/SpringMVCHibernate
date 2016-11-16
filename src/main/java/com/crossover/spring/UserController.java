@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.crossover.spring.model.ParameterId;
 import com.crossover.spring.model.Person;
 import com.crossover.spring.service.UserService;
+import com.crossover.spring.service.parameterService;
 import com.crossover.spring.viewBean.LoginBean;
 
 @Controller
@@ -19,13 +21,21 @@ public class UserController {
 	@Autowired(required = true)
 	private UserService userService;
 	
+	@Autowired
+	private parameterService parameterService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value =  "/users", method = RequestMethod.GET)
 	public String showLogin(Model model) {
 
 		logger.debug("UserController.usersIndexHandler is invoked.");
-		model.addAttribute("loginBean", new LoginBean());
+		
+		LoginBean loginBean = new LoginBean();
+		/*load Description of test from database*/
+		loginBean.setDescription(parameterService.get(new ParameterId("description", "1")).getParameterVarchar());
+		
+		model.addAttribute("loginBean", loginBean);
 		
 		return "user";
 	}
@@ -40,6 +50,7 @@ public class UserController {
 			return "redirect:/tests";
 		}else{
 			logger.debug("is invalid User.");
+			model.setDescription(parameterService.get(new ParameterId("description", "1")).getParameterVarchar());
 			model.setPassword("");
 			model.setMessage("Invalid credentials!!.");
 		}
