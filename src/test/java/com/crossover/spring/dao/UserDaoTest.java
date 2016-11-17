@@ -1,6 +1,7 @@
 package com.crossover.spring.dao;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -46,12 +47,25 @@ public class UserDaoTest {
 	}
 	
 	@Test
-	public void testControllerCallById(){
+	public void testCallById(){
 		
 		when(mockUserDao.find(1)).thenReturn(new User("1", "user01", "user 01", "user01@gmail.com", 
 				true, new Date(), null));
 		User u = testSubject.get(1);
 		assertThat(u.getName(), equalTo("user 01"));
+		
+	}
+	
+	@Test
+	public void testCallIsValidUser(){
+		
+		when(mockUserDao.isValidUser("admin", "admin123")).thenReturn(true);
+		
+		boolean b = testSubject.isValidUser("admin", "admin123");
+		assertTrue(b);
+		
+		b = testSubject.isValidUser("admin", "admin");
+		assertFalse(b);
 		
 	}
 
